@@ -1,0 +1,9 @@
+@(account: Account)
+
+@main(account){
+    <form action="@routes.Application.savePerson()" method="post">
+        <input type="text" name="name" />
+        <button>Add Person</button>
+    </form>
+
+}

@@ -1,0 +1,31 @@
+@(accounts: List[models.Account], session: Account)
+
+@main(session){
+    <header class="panel-heading">
+        ACCOUNT LISTS
+        <span class="pull-right">
+            <a class="btn btn-round btn-success btn-xs" href="@routes.Accounts.createAccount()">Create New Account</a>
+        </span>
+    </header>
+    <div class="panel-body">
+        <table class="table table-bordered table-striped table-condensed">
+            <tr>
+                <th>ID</th>
+                <th>REAL NAME</th>
+                <th>USERNAME</th>
+                <th>EMAIL</th>
+                <th>ACTIONS</th>
+            </tr>
+            @for(a<-accounts){
+            <tr>
+                <td>@a.id</td>
+                <td>@a.real_name</td>
+                <td>@a.username</td>
+                <td>@a.email</td>
+                <td><a class="btn btn-round btn-primary btn-xs" href="@routes.Accounts.editAccount(a.id)">Edit</a>
+                    <a class="btn btn-round btn-danger btn-xs" href="@routes.Accounts.deleteAccount(a.id)">Delete</a></td>
+            </tr>
+            }
+        </table>
+    </div>
+}

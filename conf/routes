@@ -1,0 +1,45 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page / default path
+GET     /                           controllers.Application.index()
+
+# Authentication
+GET     /login                      controllers.Authentication.login()
+POST    /login                      controllers.Authentication.authenticate()
+GET     /logout                     controllers.Authentication.logout()
+GET     /authentication             controllers.Accounts.getAuthentication()
+
+# Account
+GET     /account/new                controllers.Accounts.createAccount()
+POST    /account                    controllers.Accounts.saveAccount()
+GET     /account                    controllers.Accounts.index()
+GET     /account/edit/:id           controllers.Accounts.editAccount(id: Integer)
+POST    /account/update             controllers.Accounts.updateAccount()
+GET     /account/delete/:id         controllers.Accounts.deleteAccount(id: Integer)
+
+# Role
+GET     /role/new                   controllers.Roles.createRole()
+POST    /role                       controllers.Roles.saveRole()
+GET     /role                       controllers.Roles.index()
+GET     /role/edit/:id              controllers.Roles.editRole(id: Integer)
+POST    /role/update                controllers.Roles.updateRole()
+GET     /role/delete/:id            controllers.Roles.deleteRole(id: Integer)
+
+# AccountRole
+GET     /account/role               controllers.AccountRole.saveRole()
+
+
+# Person
+GET     /person/new                 controllers.Application.createPerson()
+POST    /person                     controllers.Application.savePerson()
+GET     /person/edit/:id            controllers.Application.editPerson(id: Integer)
+POST    /person/update              controllers.Application.updatePerson()
+GET     /person/delete/:id          controllers.Application.deletePerson(id: Integer)
+GET     /persons                    controllers.Application.getPersons()
+GET     /person/:id                 controllers.Application.getPerson(id: Integer)
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
