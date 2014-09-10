@@ -1,0 +1,62 @@
+@(session: Account)
+
+@main(session){
+    <header class="panel-heading">
+        CREATE NEW ACCOUNT
+    </header>
+    <div class="panel-body">
+        <div class="position-left">
+            <form action="@routes.Accounts.saveAccount()" method="post" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-lg-2 col-sm-2 control-label">Real Name</label>
+                    <div class="col-lg-5">
+                        <input type="text" name="real_name" class="form-control" placeholder="Real Name">
+                        <p class="help-block">Enter account real name</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 col-sm-2 control-label">Username</label>
+                    <div class="col-lg-5">
+                        <input type="text" name="username" class="form-control" placeholder="Username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 col-sm-2 control-label">Email</label>
+                    <div class="col-lg-5">
+                        <input type="email" name="email" class="form-control" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 col-sm-2 control-label">Password</label>
+                    <div class="col-lg-5">
+                        <input type="password" name="password" class="form-control" placeholder="Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 col-sm-2 control-label">Retype Password</label>
+                    <div class="col-lg-5">
+                        <input type="password" class="form-control" placeholder="Retype Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 col-sm-2 control-label">Security Question</label>
+                    <div class="col-lg-5">
+                        <input type="text" name="security_question" class="form-control" placeholder="Security Question">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 col-sm-2 control-label">Security Answer</label>
+                    <div class="col-lg-5">
+                        <input type="text" name="security_answer" class="form-control" placeholder="Security Answer">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-5">
+                        <button type="submit" class="btn btn-round btn-success btn-xs">Create Account</button>
+                        <a href="@routes.Accounts.index" class="btn btn-round btn-warning btn-xs">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+}

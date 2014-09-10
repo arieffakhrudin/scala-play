@@ -14,14 +14,22 @@
                 <th>REAL NAME</th>
                 <th>USERNAME</th>
                 <th>EMAIL</th>
+                <th>ROLE</th>
                 <th>ACTIONS</th>
             </tr>
             @for(a<-accounts){
             <tr>
                 <td>@a.id</td>
-                <td>@a.real_name</td>
+                <td>@a.realName</td>
                 <td>@a.username</td>
                 <td>@a.email</td>
+                <td>
+                    @if(a.roles.isEmpty){
+                        <a href="@routes.AccountRole.setRole(a.id)" class="btn btn-round btn-warning btn-xs">Set Role</a>
+                    }else{
+                        @for(r<-a.roles){@r.roleName <a href="@routes.AccountRole.setRole(a.id)" class="btn btn-round btn-warning btn-xs">Change</a>}
+                    }
+                </td>
                 <td><a class="btn btn-round btn-primary btn-xs" href="@routes.Accounts.editAccount(a.id)">Edit</a>
                     <a class="btn btn-round btn-danger btn-xs" href="@routes.Accounts.deleteAccount(a.id)">Delete</a></td>
             </tr>

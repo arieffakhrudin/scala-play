@@ -1,0 +1,27 @@
+@(roles: List[models.Role], session: Account)
+
+@main(session){
+<header class="panel-heading">
+    ROLE LISTS
+        <span class="pull-right">
+            <a class="btn btn-round btn-success btn-xs" href="@routes.Roles.createRole()">Create New Role</a>
+        </span>
+</header>
+<div class="panel-body">
+    <table class="table table-bordered table-striped table-condensed">
+        <tr>
+            <th>ID</th>
+            <th>ROLE NAME</th>
+            <th>ACTIONS</th>
+        </tr>
+        @for(r<-roles){
+        <tr>
+            <td>@r.id</td>
+            <td>@r.role_name</td>
+            <td><a class="btn btn-round btn-primary btn-xs" href="@routes.Roles.editRole(r.id)">Edit</a>
+                <a class="btn btn-round btn-danger btn-xs" href="@routes.Roles.deleteRole(r.id)">Delete</a></td>
+        </tr>
+        }
+    </table>
+</div>
+}

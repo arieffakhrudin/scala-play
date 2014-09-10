@@ -6,10 +6,7 @@ import play.data.validation.Constraints;
 import play.db.ebean.Model;
 import scala.concurrent.stm.ccstm.AccessHistory;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,18 +23,19 @@ public class Account extends Model {
     @Id
     public Integer id;
     public String username;
-    public String real_name;
+    public String realName;
     public String password;
     public String email;
-    public String security_question;
-    public String security_answer;
+    public String securityQuestion;
+    public String securityAnswer;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    public List<UserActivityLog> userActivityLogs;
 
     @ManyToMany
-    public List<Role> roleList = new ArrayList<Role>();
+    public List<Role> roles;
 
-    // -- Queries
-    
-    public static Model.Finder<Integer, Account> find = new Model.Finder<Integer, Account>(Integer.class, Account.class);
+    public static Finder<Integer, Account> find = new Finder<Integer, Account>(Integer.class, Account.class);
 
     public static Account findByUsername(String username) {
         return find.where().eq("username", username).findUnique();
@@ -64,7 +62,7 @@ public class Account extends Model {
     
     // --
     public String toString() {
-        return "Account(" + real_name + ")";
+        return "Account(" + realName + ")";
     }
 
 }

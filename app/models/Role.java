@@ -2,8 +2,8 @@ package models;
 
 import play.db.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by MAF on 9/9/2014.
@@ -12,9 +12,10 @@ import javax.persistence.Id;
 public class Role extends Model {
     @Id
     public Integer id;
-    public String role_name;
+    public String roleName;
 
-    public static Model.Finder<Integer,Role> find = new Model.Finder<Integer,Role>(
-            Integer.class, Role.class
-    );
+    @OneToMany(cascade = CascadeType.ALL)
+    public List<Privilege> privileges;
+
+    public static Finder<Integer, Role> find = new Finder<Integer, Role>(Integer.class, Role.class);
 }

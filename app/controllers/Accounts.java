@@ -1,7 +1,7 @@
 package controllers;
 
 import models.Account;
-import models.Person;
+import models.Role;
 import org.mindrot.jbcrypt.BCrypt;
 import play.data.Form;
 import play.db.ebean.Model;
@@ -9,8 +9,6 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
 import views.html.account.account;
-import views.html.create;
-import views.html.edit;
 import views.html.home;
 
 import java.util.List;
@@ -36,7 +34,8 @@ public class Accounts extends Controller {
     }
 
     public static Result createAccount(){
-        return ok(views.html.account.create.render(Account.findByUsername(request().username())));
+        Account account = Account.findByUsername(request().username());
+        return ok(views.html.account.create.render(account));
     }
 
     public static Result saveAccount(){

@@ -15,7 +15,16 @@ public class Secured extends Security.Authenticator {
     public Result onUnauthorized(Context ctx) {
         return redirect(routes.Authentication.login());
     }
-    
+
+    /*
+    @Override
+    static boolean check(String profile) {
+        if("admin".equals(profile)) {
+            return User.find("byEmail", connected()).<User>first().isAdmin;
+        }
+        return false;
+    }
+    */
     // Access rights
 
     /*

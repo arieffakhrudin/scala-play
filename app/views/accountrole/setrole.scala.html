@@ -1,25 +1,70 @@
-@(account: Account, session: Account)
+@(roles: List[Role], account: Account, session: Account)
 
 @main(session){
 <header class="panel-heading">
     SET ROLE FOR THIS ACCOUNT
 </header>
 <div class="panel-body">
+
+    <table class="table table-invoice" >
+        <thead>
+            <tr>
+                <th style="width: 20%;">Real Name</th>
+                <th><h4>@account.realName</h4></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Account ID</td>
+                <td>@account.id</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>@account.email</td>
+            </tr>
+            <tr>
+                <td>Security Question</td>
+                <td>@account.securityQuestion</td>
+            </tr>
+            <tr>
+                <td>Security Answer</td>
+                <td>@account.securityAnswer</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr />
+
     <div class="position-left">
-        <form action="@routes.AccountRole.saveRole()" method="post" class="form-horizontal" role="form">
+        <form action="@routes.AccountRole.saveRole(account.id)" method="post" class="form-horizontal" role="form">
+            <!--
+            <div class="controls">
+                @for(r <- roles) {
+                <label class="checkbox">
+                    <input type="checkbox" name="roles[]" value="@r.id" />
+                    @r.roleName
+                </label>
+                }
+            </div>
+            -->
             <div class="form-group">
                 <label class="col-lg-2 col-sm-2 control-label">Role Name</label>
                 <div class="col-lg-5">
-                    <input type="text" name="role_name" class="form-control" placeholder="Role Name">
+                    <select name="id" class="form-control">
+                        @for(r <- roles){
+                            <option value="@r.id">@r.roleName</option>
+                        }
+                    </select>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-5">
-                    <button type="submit" class="btn btn-success btn-small">Create Role</button>
-                    <a href="@routes.Roles.index" class="btn btn-warning btn-small">Cancel</a>
+                    <button type="submit" class="btn btn-success btn-round btn-xs">Save Role</button>
+                    <a href="@routes.Accounts.index" class="btn btn-warning btn-round btn-xs">Cancel</a>
                 </div>
             </div>
         </form>
     </div>
+
 </div>
 }

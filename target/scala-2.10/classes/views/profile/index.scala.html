@@ -1,0 +1,48 @@
+@(session: Account)
+
+@main(session){
+    <div class="panel-body profile-information">
+        <div class="col-md-3">
+            <div class="profile-pic text-center">
+                <img src="@routes.Assets.at("images/lock_thumb.jpg")" alt=""/>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="profile-desk">
+                <h1>@session.real_name</h1>
+                <span class="text-muted">as @for(r <- session.roles){@r.role_name}</span>
+                <br /><br />
+                Username: @session.username
+                Email: @session.email<br />
+                Security Question: @session.security_question<br />
+                Security Answer: @session.security_answer<br /><br />
+                <a href="#" class="btn btn-primary btn-round btn-xs">Edit Profile</a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="profile-statistics">
+                <h1>1240</h1>
+                <p>Tasks</p>
+                <h1>45</h1>
+                <p>Login Times</p>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="#">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-google-plus"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
